@@ -1,8 +1,10 @@
 package algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+
+import org.junit.Test;
 
 public class Solution {
 
@@ -127,29 +129,34 @@ public class Solution {
 	 */
 	public boolean isScramble(String s1, String s2) {
         // Write your code here
-		if (s1 == null || s2 == null) {
+		if(s1.length() != s2.length()) {
 			return false;
 		}
-		for (int i = 0; i < s1.length(); i++) {
-			if (s1.charAt(i) == s2.charAt(i)) {
-				continue;
-			} else {
-				if(i != s1.length() - 1 && i != s2.length() - 1){
-					if(s1.charAt(i) == s2.charAt(i+1) && s1.charAt(i + 1) == s2.charAt(i)){
-						
-						i += 1;
-						continue;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
+		int[] temp = new int[26];
+		Arrays.fill(temp, 0);
+		for(int i = 0; i < s1.length(); i++) {
+			temp[s1.charAt(i) - 'a']++;
 		}
-		return true;
+		for(int i = 0; i < s2.length(); i++) {
+			temp[s2.charAt(i) - 'a']--;
+		}
+		for (int i = 0; i < temp.length; i++) {
+			if (temp[i] != 0) 
+				return false;
+		}
+		if (s1.length() == 1) {
+			return true;
+		}
+		for (int i = 1; i<s1.length(); i++) {
+			boolean result = isScramble(s1.substring(0, i), s2.substring(0, i)) 
+					&& isScramble(s1.substring(i, s1.length()), s2.substring(i, s2.length()));
+			result = result || (isScramble(s1.substring(0, i), s2.substring(s2.length() - i, s2.length())) 
+					&& isScramble(s1.substring(i, s1.length()), s2.substring(0, s2.length() - i)));
+			if (result)
+				return true;
+		}
+ 		return false;
     }
-
 
 }
 
