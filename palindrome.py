@@ -36,12 +36,13 @@ def is_palindrome2(head):
             return False
     return True
 
-# Given a string, determine if it is a palindrome, 
+# given a string, determine if it is a palindrome, 
 # Considering only alphanumeric characters and ignoring cases.
 # "A man, a plan, a canal: Panama" is a palindrome.
 # "race a car" is not a palindrome.
 
- def is_palindrome3(s):
-    filter_str = re.sub(r"\W+", "", s).lower()
-    return(filter_str == filter_str[::-1])
+def is_palindrome3(s):
+    # matched_str = re.sub(r"\W+", "", s).lower()
+    matched_str = re.sub(r"[^a-zA-Z0-9]", "", s).lower()
+    return(matched_str == matched_str[::-1])
 
