@@ -44,8 +44,8 @@ def generate_parenthesis(n):
 
     parentheses_set = []
     parenthesis("(", n, parentheses_set)
-    print parentheses_set
+    return parentheses_set
 
 if __name__ == "__main__":
-    generate_parenthesis(100)
+    print generate_parenthesis(3)
 
