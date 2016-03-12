@@ -47,4 +47,5 @@ def generate_parenthesis(n):
     print parentheses_set
 
 if __name__ == "__main__":
-    generate_parenthesis(10)
+    generate_parenthesis(100)
+
