@@ -46,3 +46,16 @@ def is_palindrome3(s):
     matched_str = re.sub(r"[^a-zA-Z0-9]", "", s).lower()
     return(matched_str == matched_str[::-1])
 
+
+# Reverse a linked list.
+# Reverse it in-place and in one-pass
+
+def reverse(head):
+    cur = None
+    while head:
+        tmp = head
+        head = head.next
+        tmp.next = cur
+        cur = tmp
+    return cur
+
